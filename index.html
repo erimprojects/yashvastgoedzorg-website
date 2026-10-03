@@ -970,7 +970,7 @@ footer a{color:#C9D6EE}
       <p class="lede">Yash Vastgoedzorg verbindt ervaren schilders met klanten. Kies je route — de rest regelen wij.</p>
     </div>
     <div class="routes">
-      <a class="route" href="#contact" data-subject="0">
+      <a class="route" href="#contact" data-subject="1">
         <span class="k">Route 01 — opdrachtgever</span>
         <h3>Ik heb werk en ben op zoek naar een schilder</h3>
         <p>Beschrijf je project, stuur een foto mee en ontvang snel een reactie van een schilder die bij de klus past.</p>
@@ -1027,7 +1027,7 @@ footer a{color:#C9D6EE}
       <h2>Zoek je werk?<br>Stuur je cv op<span class="dot">.</span></h2>
       <p class="lede">Upload snel uw cv en neem deel aan ons netwerk van schilders.</p>
       <div class="cta-row">
-        <a class="btn btn--white" href="#contact" data-subject="1">Aanmelden via het formulier</a>
+        <a class="btn btn--white" href="#contact" data-subject="2">Aanmelden via het formulier</a>
         <a class="btn btn--line" href="mailto:yashvastgoedzorg@gmail.com?subject=CV%20schilder">Cv mailen</a>
       </div>
     </div>
@@ -1071,8 +1071,9 @@ footer a{color:#C9D6EE}
           <div class="field"><label for="telefoon">Telefoon <span>(optioneel)</span></label><input id="telefoon" name="telefoon" type="tel" autocomplete="tel"></div>
         </div>
         <div class="field">
-          <label for="onderwerp">Onderwerp</label>
+          <label for="onderwerp">Onderwerp <span>(optioneel)</span></label>
           <select id="onderwerp" name="onderwerp">
+            <option value="" selected>Kies een onderwerp (optioneel)</option>
             <option>Ik heb werk en ben op zoek naar een schilder</option>
             <option>Ik ben een schilder en ik zoek werk</option>
             <option>Iets anders</option>
@@ -1495,7 +1496,7 @@ if(f){ f.addEventListener('submit',function(e){
   if(!g('naam')||!g('email')||!g('bericht')){ f.reportValidity(); return; }
   var st=$('formStatus'), btn=f.querySelector('button[type=submit]');
   st.textContent='Versturen…'; st.style.color=''; btn.disabled=true;
-  var fd=new FormData(f); fd.append('_subject','Aanvraag via website — '+g('onderwerp')); fd.append('_replyto',g('email'));
+  var fd=new FormData(f); fd.append('_subject', g('onderwerp') ? 'Aanvraag via website — '+g('onderwerp') : 'Aanvraag via website'); fd.append('_replyto',g('email'));
   fetch('https://formspree.io/f/mzeznaee',{method:'POST',body:fd,headers:{'Accept':'application/json'}})
     .then(function(r){ if(!r.ok) throw new Error(); f.reset(); st.style.color='#0C7A43'; st.textContent='Bedankt! Je bericht is verstuurd. We nemen snel contact op.'; })
     .catch(function(){ st.style.color='#B42318'; st.textContent='Versturen lukte niet. Bel 06 24 86 57 72 of mail yashvastgoedzorg@gmail.com.'; })
